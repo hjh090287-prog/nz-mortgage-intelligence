@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NZ Mortgage & Rental Yield Calculator | Independent Property Tools</title>
+  <meta name="description" content="Calculate your mortgage repayments, rental yield, and house affordability with the premier NZ property tool. Real-time interest rate updates and total interest tracking.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fcfcfd;
+      --card: #ffffff;
+      --border: #eaecf0;
+      --primary: #1570ef;
+      --primary-hover: #175cd3;
+      --text: #101828;
+      --text-light: #667085;
+      --green: #12b76a;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex; flex-direction: column; min-height: 100vh;
+    }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; width: 100%; }
+
+    /* HEADER */
+    header { background: #fff; border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.25rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+    .nav { display: flex; gap: 20px; font-size: 0.85rem; font-weight: 600; }
+    .nav a { color: var(--text-light); text-decoration: none; }
+
+    /* HERO */
+    .hero { py: 60px; text-align: center; margin: 60px 0 40px; }
+    .hero h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 12px; }
+    .hero p { color: var(--text-light); font-size: 1.1rem; }
+
+    /* CALCULATOR GRID */
+    .calc-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; margin-bottom: 60px; }
+    @media(max-width: 768px) { .calc-grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px; box-shadow: 0 1px 3px rgba(16,24,40,0.05);
+    }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 8px; color: var(--text); }
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-wrapper span { position: absolute; left: 14px; color: var(--text-light); font-size: 0.9rem; }
+    .input-wrapper input { 
+      width: 100%; padding: 12px 14px 12px 34px; 
+      border: 1px solid var(--border); border-radius: 8px;
+      font-size: 1rem; font-family: inherit; font-weight: 500;
+      transition: 0.2s;
+    }
+    .input-wrapper input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(21, 112, 239, 0.1); }
+
+    /* RESULTS */
+    .result-box { text-align: center; padding-bottom: 30px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
+    .result-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 8px; }
+    .result-value { font-size: 3rem; font-weight: 800; color: var(--primary); letter-spacing: -2px; }
+    
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; }
+    .stat-item { padding: 16px; background: #f9fafb; border-radius: 8px; border: 1px solid var(--border); }
+    .stat-label { font-size: 0.7rem; color: var(--text-light); margin-bottom: 4px; font-weight: 600; text-transform: uppercase; }
+    .stat-val { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+
+    /* FOOTER */
+    footer { margin-top: auto; padding: 40px 0; border-top: 1px solid var(--border); color: var(--text-light); font-size: 0.8rem; text-align: center; background: #fff; }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="logo">Property<span>Intelligence</span></div>
+    <div class="nav">
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="hero">
+    <h1>Smart NZ Mortgage Tools</h1>
+    <p>Plan your home ownership with bank-grade accuracy and 100% independence.</p>
+  </div>
+
+  <div class="calc-grid">
+    <!-- INPUTS -->
+    <div class="card">
+      <div class="form-group">
+        <label>Property Price</label>
+        <div class="input-wrapper"><span>$</span><input type="number" id="price" value="850000" oninput="calculate()"></div>
+      </div>
+      <div class="form-group">
+        <label>Deposit Amount</label>
+        <div class="input-wrapper"><span>$</span><input type="number" id="deposit" value="170000" oninput="calculate()"></div>
+      </div>
+      <div class="form-group">
+        <label>Loan Term (Years)</label>
+        <div class="input-wrapper"><span>📅</span><input type="number" id="term" value="30" oninput="calculate()" style="padding-left: 40px;"></div>
+      </div>
+      <div class="form-group">
+        <label>Interest Rate (%)</label>
+        <div class="input-wrapper"><span>📈</span><input type="number" step="0.01" id="rate" value="6.45" oninput="calculate()" style="padding-left: 40px;"></div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="card" style="background: #fff; border-top: 4px solid var(--primary);">
+      <div class="result-box">
+        <div class="result-label">Monthly Repayment</div>
+        <div class="result-value" id="monthlyRepayment">$0</div>
+      </div>
+      
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-label">Total Loan</div>
+          <div class="stat-val" id="totalLoan">$0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Total Interest</div>
+          <div class="stat-val" id="totalInterest" style="color: #d92d20;">$0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">LVR Ratio</div>
+          <div class="stat-val" id="lvr">0%</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Total Payment</div>
+          <div class="stat-val" id="totalPayment">$0</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 30px; text-align: center;">
+        <button style="background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; width: 100%; cursor: pointer;">Download Amortization Schedule</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2026 Property Intelligence NZ. All rights reserved. <br>
+  Built for mortgage transparency in Morrinsville & Beyond.</p>
+</footer>
+
+<script>
+  function calculate() {
+    const price = parseFloat(document.getElementById('price').value) || 0;
+    const deposit = parseFloat(document.getElementById('deposit').value) || 0;
+    const term = parseInt(document.getElementById('term').value) || 30;
+    const rate = parseFloat(document.getElementById('rate').value) || 0;
+
+    const loanAmount = price - deposit;
+    const lvr = (loanAmount / price) * 100;
+    
+    // Monthly Calculation
+    const monthlyRate = (rate / 100) / 12;
+    const totalMonths = term * 12;
+    
+    let monthly;
+    if (monthlyRate === 0) {
+      monthly = loanAmount / totalMonths;
+    } else {
+      monthly = (loanAmount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -totalMonths));
+    }
+
+    const totalPayment = monthly * totalMonths;
+    const totalInterest = totalPayment - loanAmount;
+
+    // UI Update
+    document.getElementById('monthlyRepayment').innerText = '$' + Math.round(monthly).toLocaleString();
+    document.getElementById('totalLoan').innerText = '$' + Math.round(loanAmount).toLocaleString();
+    document.getElementById('totalInterest').innerText = '$' + Math.round(totalInterest).toLocaleString();
+    document.getElementById('lvr').innerText = Math.round(lvr) + '%';
+    document.getElementById('totalPayment').innerText = '$' + Math.round(totalPayment).toLocaleString();
+  }
+  
+  calculate();
+</script>
+
+</body>
+</html>
