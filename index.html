@@ -77,14 +77,14 @@
     .hero-result { background: var(--text); color: white; border-radius: 16px; padding: 40px; text-align: center; position: relative; overflow: hidden; }
     .hero-result::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--primary), #38bdf8); }
     .result-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
-    .result-value { font-size: 4rem; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 8px; }
+    .result-value { font-size: 5rem; font-weight: 900; letter-spacing: -2.5px; line-height: 1; margin: 12px 0 8px; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
     .result-sub { font-size: 1rem; color: rgba(255,255,255,0.6); }
 
     .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     @media(max-width: 600px) { .stats-grid { grid-template-columns: 1fr; } }
     .stat-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
     .stat-label { font-size: 0.75rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-    .stat-val { font-size: 1.5rem; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+    .stat-val { font-size: 1.8rem; font-weight: 900; color: var(--text); letter-spacing: -0.5px; }
 
     /* AMORTIZATION TABLE */
     .table-container { margin-top: 40px; background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow-x: auto; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
@@ -121,7 +121,6 @@
   </div>
 </header>
 
-<div class="ad-banner">ADVERTISEMENT - LEADERBOARD (728x90)</div>
 
 <main class="container">
   <div class="hero">
@@ -238,9 +237,38 @@
         </table>
       </div>
 
+      <!-- AD ZONE MOVED UNDER RESULTS -->
+      <div class="ad-banner" style="margin: 40px 0 0; width: 100%;">ADVERTISEMENT - IN CONTENT (728x90)</div>
+
     </div>
 
   </div>
+
+  <!-- EDUCATIONAL & SEO SECTION -->
+  <section style="background: #fff; border-radius: 16px; padding: 40px; border: 1px solid var(--border); margin-bottom: 60px;">
+    <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 24px; color: var(--text); border-bottom: 2px solid var(--primary-light); padding-bottom: 12px; display: inline-block;">📚 How to Use This Mortgage Calculator (Manual)</h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+      
+      <div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 12px;">1. Understanding Your Repayments</h3>
+        <p style="color: var(--text-light); line-height: 1.6; margin-bottom: 16px;">Your minimum regular payment is calculated using the principal loan amount, the interest rate, and the loan term. In the early years of a standard 30-year table mortgage, the majority of your repayment goes toward paying the <strong>Interest</strong> rather than reducing the <strong>Principal</strong>.</p>
+        <p style="font-size: 0.85rem;"><a href="https://sorted.org.nz/guides/home-buying/mortgages-explained/" target="_blank" style="color: var(--primary); font-weight: 600; text-decoration: none;">Read the Sorted.org.nz Mortgage Guide &rarr;</a></p>
+      </div>
+
+      <div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 12px;">2. The Power of "Extra Repayments"</h3>
+        <p style="color: var(--text-light); line-height: 1.6; margin-bottom: 16px;">This is the most powerful feature of our calculator. By adding even a small amount (e.g., $50 a week) to your regular payment, you aggressively attack the principal balance. This compounds over time, often shaving <strong>years</strong> off your loan term and saving you tens of thousands of dollars in interest.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 12px;">3. Current Interest Rates</h3>
+        <p style="color: var(--text-light); line-height: 1.6; margin-bottom: 16px;">The interest rate you input heavily dictates your affordability. Rates in NZ are heavily influenced by the Official Cash Rate (OCR) set by the Reserve Bank. Always shop around with different banks or use a mortgage broker to secure a rate lower than the advertised "card rate".</p>
+        <p style="font-size: 0.85rem;"><a href="https://www.rbnz.govt.nz/monetary-policy/official-cash-rate-decisions" target="_blank" style="color: var(--primary); font-weight: 600; text-decoration: none;">Check current OCR at RBNZ &rarr;</a></p>
+      </div>
+
+    </div>
+  </section>
 </main>
 
 <footer>
